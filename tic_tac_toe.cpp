@@ -23,6 +23,8 @@ int check_win(std::vector<char> board, char tic)
 	return (0);
 }
 
+
+
 int draw(std::vector<char> board)
 {
 	if (board[0] != ' ' && board[1] != ' ' && board[2] != ' ' && board[3] != ' ' 
@@ -57,7 +59,6 @@ int main()
 					board[choice - 1] = player1;
 					turn = 1;
 					choice = 10;
-					printf("I am here\n");
 				}
 				else
 				{
