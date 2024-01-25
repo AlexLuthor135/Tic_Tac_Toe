@@ -23,7 +23,24 @@ int check_win(std::vector<char> board, char tic)
 	return (0);
 }
 
-
+int	turn_handle(int *turn, int *choice, char player, std::vector<char> &board)
+{
+	if (board[(*choice) - 1] == ' ')
+	{
+		board[(*choice) - 1] = player;
+		if (player == 'X')
+			(*turn) = 1;
+		else
+			(*turn) = 0;
+		(*choice) = 10;
+		return (1);
+	}
+	else
+	{
+		std::cout << "This cell is occupied, choose another\n\n";
+		return (0);
+	}
+}
 
 int draw(std::vector<char> board)
 {
@@ -54,17 +71,8 @@ int main()
 			std::cin >> choice;
 			while (choice != 10)
 			{
-				if (board[choice - 1] == ' ')
-				{
-					board[choice - 1] = player1;
-					turn = 1;
-					choice = 10;
-				}
-				else
-				{
-					std::cout << "This cell is occupied, choose another\n\n";
+				if (!turn_handle(&turn, &choice, player1, board))
 					break ;
-				}
 			}
 		}
 		else if (turn == 1)
@@ -73,17 +81,8 @@ int main()
 			std::cin >> choice;
 			while (choice != 10)
 			{
-				if (board[choice - 1] == ' ')
-				{
-					board[choice - 1] = player2;
-					turn = 0;
-					choice = 10;
-				}
-				else
-				{
-					std::cout << "This cell is occupied, choose another\n\n";
+				if (!turn_handle(&turn, &choice, player2, board))
 					break ;
-				}
 			}
 		}
 		std::cout << " " << board[0] << " | " << board[1] << " | " << board[2] << " \n";
